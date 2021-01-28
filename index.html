@@ -29,7 +29,7 @@
                            <input id="iPhone-count" type="text" class="form-control text-center" value="1">
                            <button id="iPhone-increase" class="btn btn-default"><i class="fas fa-plus"></i></button>
                         </div>
-                        <h5>$ <span id="iPhone-Price">1219</span></h5>
+                        <h5>$ <span id="iPhone-price">1219</span></h5>
                         <img src="images/remove.png" alt="" class="remove-item">
                      </div>
                   </div>
@@ -79,51 +79,73 @@
    </section>
    <script>
       document.getElementById('iPhone-increase').addEventListener('click', function () {
-         handlerProductChange(true);
+         handlerProductChange('iPhone',true);
       });
       document.getElementById('iPhone-decrease').addEventListener('click', function () {
-        handlerProductChange(false);
+        handlerProductChange('iPhone',false);
       });
 
 
       document.getElementById('case-increase').addEventListener('click',function(){
-         handlerCaseChange(true);
+         handlerProductChange('case', true);
       });
       document.getElementById('case-decrease').addEventListener('click',function(){
-         handlerCaseChange(false);
+         handlerProductChange('case',false);
       });
-      //
-      function handlerCaseChange(isIncrease){
-         const caseInput = document.getElementById('case-count');
-         const caseCount = parseInt(caseInput.value);
-         let caseNewCount = caseCount;
-         if(isIncrease == true){
-            caseNewCount = caseCount + 1;
-         }
-         if(isIncrease == false && caseNewCount>0){
-            caseNewCount = caseCount - 1;
-         }
-         caseInput.value = caseNewCount;
-         const casePrice = caseNewCount * 59;
-         document.getElementById('case-price').innerText = casePrice;
-      }
 
 
-      function handlerProductChange(isIncrease){
-         const iPhoneInput = document.getElementById('iPhone-count');
-         const iPhoneCount = parseInt(iPhoneInput.value);
-         // const iPhoneNewCount = iPhoneCount - 1;
-         let iPhoneNewCount = iPhoneCount;
+      function handlerProductChange(product,isIncrease){
+         const productInput = document.getElementById(product + '-count');
+         const productCount = parseInt(productInput.value);
+         let productNewCount = productCount;
          if(isIncrease == true){
-            iPhoneNewCount = iPhoneCount + 1;
+            productNewCount = productCount + 1;
          }
-         if(isIncrease == false && iPhoneCount > 0){
-            iPhoneNewCount = iPhoneCount - 1;
+         if(isIncrease == false && productCount > 0){
+            productNewCount = productCount - 1;
          }
-         iPhoneInput.value = iPhoneNewCount;
-         const iPhonePrice = iPhoneNewCount * 1219;
-         document.getElementById('iPhone-Price').innerText = iPhonePrice;
+         productInput.value = productNewCount;
+         let productTotal =0;
+         if(product == 'iPhone'){
+            productTotal = productNewCount * 1219;
+         }
+         if(product == 'case'){
+            productTotal = productNewCount * 59;
+         }
+
+         document.getElementById(product + '-price').innerText = productTotal;
       }
+      // function handlerCaseChange(isIncrease){
+      //    const caseInput = document.getElementById('case-count');
+      //    const caseCount = parseInt(caseInput.value);
+      //    let caseNewCount = caseCount;
+      //    if(isIncrease == true){
+      //       caseNewCount = caseCount + 1;
+      //    }
+      //    if(isIncrease == false && caseNewCount>0){
+      //       caseNewCount = caseCount - 1;
+      //    }
+      //    caseInput.value = caseNewCount;
+      //    const casePrice = caseNewCount * 59;
+      //    document.getElementById('case-price').innerText = casePrice;
+      // }
+
+
+      // function handlerProductChange(isIncrease){
+      //    const iPhoneInput = document.getElementById('iPhone-count');
+      //    const iPhoneCount = parseInt(iPhoneInput.value);
+      //    // const iPhoneNewCount = iPhoneCount - 1;
+      //    let iPhoneNewCount = iPhoneCount;
+      //    if(isIncrease == true){
+      //       iPhoneNewCount = iPhoneCount + 1;
+      //    }
+      //    if(isIncrease == false && iPhoneCount > 0){
+      //       iPhoneNewCount = iPhoneCount - 1;
+      //    }
+      //    iPhoneInput.value = iPhoneNewCount;
+      //    const iPhonePrice = iPhoneNewCount * 1219;
+      //    document.getElementById('iPhone-Price').innerText = iPhonePrice;
+      // }
    </script>
 </body>
 
