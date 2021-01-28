@@ -25,11 +25,11 @@
 
                      <div class="col-md-5 center-item">
                         <div class="input-group number-spinner">
-                           <button class="btn btn-default"><i class="fas fa-minus"></i></button>
-                           <input type="text" class="form-control text-center" value="1">
-                           <button class="btn btn-default"><i class="fas fa-plus"></i></button>
+                           <button id="iPhone-decrease" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                           <input id="iPhone-count" type="text" class="form-control text-center" value="1">
+                           <button id="iPhone-increase" class="btn btn-default"><i class="fas fa-plus"></i></button>
                         </div>
-                        <h5>$1219</h5>
+                        <h5>$ <span id="iPhone-Price">1219</span></h5>
                         <img src="images/remove.png" alt="" class="remove-item">
                      </div>
                   </div>
@@ -43,12 +43,12 @@
                      </div>
                      <div class="col-md-5 center-item">
                         <div class="input-group number-spinner">
-                           <button class="btn btn-default"><i class="fas fa-minus"></i></button>
-                           <input type="text" class="form-control text-center" value="1">
-                           <button class="btn btn-default"><i class="fas fa-plus"></i></button>
+                           <button  id="case-decrease" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                           <input id="case-count" type="text" class="form-control text-center" value="1">
+                           <button  id="case-increase" class="btn btn-default"><i class="fas fa-plus"></i></button>
 
                         </div>
-                        <h5>$59</h5>
+                        <h5>$ <span id="case-price">59</span></h5>
                         <img src="images/remove.png" alt="" class="remove-item">
                      </div>
                   </div>
@@ -64,7 +64,7 @@
                      </div>
 
                      <div class="col-md-4 status">
-                        <h5>$1,278</h5>
+                        <h5>$ <span id="subTotal">1,278</span></h5>
                         <h5>$0</h5>
                         <h5>$1,278</h5>
                      </div>
@@ -77,6 +77,45 @@
          </div>
       </div>
    </section>
+   <script>
+      document.getElementById('iPhone-increase').addEventListener('click', function () {
+         handlerProductChange(true);
+      });
+      document.getElementById('iPhone-decrease').addEventListener('click', function () {
+        handlerProductChange(false);
+      });
+
+
+      document.getElementById('case-increase').addEventListener('click',function(){
+         const caseInput = document.getElementById('case-count');
+         const caseCount = parseInt(caseInput.value);
+         const caseIncrease = caseCount + 1;
+         caseInput.value = caseIncrease;
+         const casePrice = caseIncrease * 59;
+         document.getElementById('case-price').innerText = casePrice;
+      })
+      document.getElementById('case-decrease').addEventListener('click',function(){
+         // const caseInput = document
+         console.log();
+      });
+
+
+      function handlerProductChange(isIncrease){
+         const iPhoneInput = document.getElementById('iPhone-count');
+         const iPhoneCount = parseInt(iPhoneInput.value);
+         // const iPhoneNewCount = iPhoneCount - 1;
+         let iPhoneNewCount = iPhoneCount;
+         if(isIncrease == true){
+            iPhoneNewCount = iPhoneCount + 1;
+         }
+         if(isIncrease == false && iPhoneCount > 0){
+            iPhoneNewCount = iPhoneCount - 1;
+         }
+         iPhoneInput.value = iPhoneNewCount;
+         const iPhonePrice = iPhoneNewCount * 1219;
+         document.getElementById('iPhone-Price').innerText = iPhonePrice;
+      }
+   </script>
 </body>
 
 </html>
