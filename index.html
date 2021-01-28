@@ -87,17 +87,26 @@
 
 
       document.getElementById('case-increase').addEventListener('click',function(){
+         handlerCaseChange(true);
+      });
+      document.getElementById('case-decrease').addEventListener('click',function(){
+         handlerCaseChange(false);
+      });
+      //
+      function handlerCaseChange(isIncrease){
          const caseInput = document.getElementById('case-count');
          const caseCount = parseInt(caseInput.value);
-         const caseIncrease = caseCount + 1;
-         caseInput.value = caseIncrease;
-         const casePrice = caseIncrease * 59;
+         let caseNewCount = caseCount;
+         if(isIncrease == true){
+            caseNewCount = caseCount + 1;
+         }
+         if(isIncrease == false && caseNewCount>0){
+            caseNewCount = caseCount - 1;
+         }
+         caseInput.value = caseNewCount;
+         const casePrice = caseNewCount * 59;
          document.getElementById('case-price').innerText = casePrice;
-      })
-      document.getElementById('case-decrease').addEventListener('click',function(){
-         // const caseInput = document
-         console.log();
-      });
+      }
 
 
       function handlerProductChange(isIncrease){
